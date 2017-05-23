@@ -1,6 +1,7 @@
 ﻿using System;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlacementManager : MonoBehaviour, IInputClickHandler {
 
@@ -29,7 +30,13 @@ public class PlacementManager : MonoBehaviour, IInputClickHandler {
 
     public void OnConfirmPlacement()
     {
-        
+        var note = _newNote.GetComponent<NoteBehaviour>();
+        var noteInputField = NoteInputCanvas.GetComponentInChildren<InputField>();
+
+        note.NoteText = noteInputField.text;
+
+        noteInputField.text = "";
+        NoteInputCanvas.SetActive(false);
     }
 
     public void OnCancelPlacement()
